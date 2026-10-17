@@ -12,12 +12,21 @@ config_version=5
 
 config/name="New Game Project"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/art/icon.svg"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Assets/art/": "orange",
+"res://Scenes/": "green",
+"res://Scripts/": "purple"
+}
 
 [physics]
 
