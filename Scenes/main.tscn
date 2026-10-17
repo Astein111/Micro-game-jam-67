@@ -54,10 +54,18 @@ occluder = SubResource("OccluderPolygon2D_4pm53")
 color = Color(0.5689727, 0.56897277, 0.5689727, 1)
 
 [node name="Sun" type="PointLight2D" parent="." unique_id=979824250]
+<<<<<<< Updated upstream
 position = Vector2(14, 35)
+=======
+position = Vector2(170, 99)
+>>>>>>> Stashed changes
 scale = Vector2(47.75, 47.75)
 energy = 1.42
 texture = SubResource("GradientTexture2D_4pm53")
 
+<<<<<<< Updated upstream
 [node name="Window" parent="." unique_id=25227586 instance=ExtResource("4_jjvhh")]
 position = Vector2(503, 342)
+=======
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=722781181]
+>>>>>>> Stashed changes
