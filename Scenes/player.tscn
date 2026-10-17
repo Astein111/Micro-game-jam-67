@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c202lbg8vx4t4" path="res://Assets/art/duck_1.png" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://c4st7gdqt0sgw" path="res://Assets/art/duck_2.png" id="4_3smsa"]
 [ext_resource type="Texture2D" uid="uid://dneyn7s58gxf6" path="res://Assets/art/duck_3.png" id="5_8erm5"]
+[ext_resource type="PackedScene" uid="uid://dbtxw1jpbbb5i" path="res://Scenes/ui.tscn" id="7_3smsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pm53"]
 radius = 29.017237
@@ -56,3 +57,5 @@ scale = Vector2(0.16666666, 0.16666663)
 sprite_frames = SubResource("SpriteFrames_pkuri")
 animation = &"run"
 autoplay = "idle"
+
+[node name="UI" parent="." unique_id=100993437 instance=ExtResource("7_3smsa")]
