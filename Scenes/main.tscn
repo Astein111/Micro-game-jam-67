@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://odevdo0ftmla" path="res://Assets/art/bg1.png" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://Scenes/player.tscn" id="2_8gbba"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Assets/art/icon.svg" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://bwi3f03vnopsn" path="res://Scenes/window.tscn" id="4_jjvhh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pm53"]
 size = Vector2(1300, 127.5)
@@ -56,3 +57,6 @@ color = Color(0.5689727, 0.56897277, 0.5689727, 1)
 scale = Vector2(47.75, 47.75)
 energy = 1.42
 texture = SubResource("GradientTexture2D_4pm53")
+
+[node name="Window" parent="." unique_id=25227586 instance=ExtResource("4_jjvhh")]
+position = Vector2(-4, 304)
