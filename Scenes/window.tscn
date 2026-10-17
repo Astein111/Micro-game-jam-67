@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://bwi3f03vnopsn"]
 
-[node name="Window" type="Node2D" unique_id=25227586]
+[ext_resource type="Texture2D" uid="uid://dscm7tg4dussl" path="res://Assets/art/image.png" id="1_efths"]
 
-[node name="LenseWindow" type="Window" parent="." unique_id=424031292]
-oversampling_override = 1.0
-position = Vector2i(8, 36)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwfwl"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2018518679]
+[node name="Window" type="StaticBody2D" unique_id=1577756558]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1913701318]
+shape = SubResource("RectangleShape2D_dwfwl")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1191264224]
+position = Vector2(0.12499952, -0.15625143)
+scale = Vector2(0.05984849, 0.06703796)
+texture = ExtResource("1_efths")
