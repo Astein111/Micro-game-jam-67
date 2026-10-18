@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bwi3f03vnopsn"]
+
+[ext_resource type="Script" uid="uid://dhu1hfwk5t6uu" path="res://Scripts/window.gd" id="1_0xhjo"]
+[ext_resource type="Texture2D" uid="uid://jpgsfmxgmokk" path="res://Assets/art/Untitled.png" id="2_0xhjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwfwl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_30sqi"]
+load_path = "res://.godot/imported/image.png-22fd07e001fe97f2693ca5317ddaf857.ctex"
+
+[node name="Window" type="StaticBody2D" unique_id=1577756558]
+script = ExtResource("1_0xhjo")
+min_size = null
+max_size = null
+smooth_speed = null
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1913701318]
+shape = SubResource("RectangleShape2D_dwfwl")
+
+[node name="Border" type="Sprite2D" parent="." unique_id=1191264224]
+position = Vector2(4.0978193e-07, -0.15625143)
+scale = Vector2(0.06060606, 0.06703796)
+texture = ExtResource("2_0xhjo")
+
+[node name="InnerContent" type="Sprite2D" parent="." unique_id=619166228]
+texture = SubResource("CompressedTexture2D_30sqi")
