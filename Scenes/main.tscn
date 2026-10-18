@@ -3,12 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://odevdo0ftmla" path="res://Assets/art/bg1.png" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://Scenes/player.tscn" id="2_8gbba"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Assets/art/icon.svg" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://bwi3f03vnopsn" path="res://Scenes/window.tscn" id="4_jjvhh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pm53"]
-size = Vector2(1300, 125.75)
+size = Vector2(1300, 127.5)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4pm53"]
-polygon = PackedVector2Array(-652, -64, 648, -64, 648, 62, -652, 62)
+polygon = PackedVector2Array(-652, -64, 648, -64, 648, 64, -652, 64)
 
 [sub_resource type="Gradient" id="Gradient_8gbba"]
 offsets = PackedFloat32Array(0.018867925, 0.047169812, 0.16037735, 0.2735849, 0.44339624, 0.5566038, 0.6792453)
@@ -22,8 +23,8 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Main" type="Node2D" unique_id=395274640]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=173169372]
-position = Vector2(650, 324.00003)
-scale = Vector2(0.9285714, 0.9257143)
+position = Vector2(650, 325)
+scale = Vector2(0.9285714, 0.9285714)
 texture = ExtResource("1_bo1nx")
 
 [node name="Player" parent="." unique_id=1243897481 instance=ExtResource("2_8gbba")]
@@ -33,18 +34,17 @@ position = Vector2(112, 432)
 limit_left = 0
 limit_top = 0
 limit_right = 1300
-limit_bottom = 648
+limit_bottom = 650
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1339057948]
 position = Vector2(652, 586)
 
 [node name="collision" type="CollisionShape2D" parent="Floor" unique_id=528952185]
-position = Vector2(-2, -0.875)
+position = Vector2(-2, 0.25)
 shape = SubResource("RectangleShape2D_4pm53")
 
 [node name="sprite" type="Sprite2D" parent="Floor" unique_id=915046043]
-position = Vector2(-1.999974, -1)
-scale = Vector2(10.15625, 0.984375)
+scale = Vector2(10.203125, 1)
 texture = ExtResource("3_8gbba")
 
 [node name="occluder" type="LightOccluder2D" parent="Floor" unique_id=849865285]
@@ -54,9 +54,10 @@ occluder = SubResource("OccluderPolygon2D_4pm53")
 color = Color(0.5689727, 0.56897277, 0.5689727, 1)
 
 [node name="Sun" type="PointLight2D" parent="." unique_id=979824250]
-position = Vector2(170, 99)
+position = Vector2(19, 330)
 scale = Vector2(47.75, 47.75)
 energy = 1.42
 texture = SubResource("GradientTexture2D_4pm53")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=722781181]
+[node name="Window" parent="." unique_id=1577756558 instance=ExtResource("4_jjvhh")]
+position = Vector2(649, 258)
