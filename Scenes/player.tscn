@@ -2,17 +2,60 @@
 
 [ext_resource type="Script" uid="uid://wddgu6jaiy0m" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://bwbw4r87y60dj" path="res://Assets/art/duck.png" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://drshlx8eckds5" path="res://Assets/art/1pixelup.png" id="3_3smsa"]
+[ext_resource type="Texture2D" uid="uid://c202lbg8vx4t4" path="res://Assets/art/duck_1.png" id="3_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://c4st7gdqt0sgw" path="res://Assets/art/duck_2.png" id="4_3smsa"]
+[ext_resource type="Texture2D" uid="uid://dneyn7s58gxf6" path="res://Assets/art/duck_3.png" id="5_8erm5"]
+[ext_resource type="PackedScene" uid="uid://dbtxw1jpbbb5i" path="res://Scenes/ui.tscn" id="7_3smsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pm53"]
-radius = 26.0
+radius = 29.017237
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pkuri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3smsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6t5aa")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3smsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8erm5")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D" unique_id=1243897481]
 script = ExtResource("1_cvnsp")
 
-[node name="sprite" type="Sprite2D" parent="." unique_id=1825641215]
-scale = Vector2(0.16666666, 0.16666663)
-texture = ExtResource("2_6t5aa")
-
 [node name="collision" type="CollisionShape2D" parent="." unique_id=1560606765]
-position = Vector2(0, 5)
+position = Vector2(-2, 2)
 shape = SubResource("CircleShape2D_4pm53")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2055205739]
+position = Vector2(1, -1)
+scale = Vector2(0.16666666, 0.16666663)
+sprite_frames = SubResource("SpriteFrames_pkuri")
+animation = &"run"
+autoplay = "idle"
+
+[node name="UI" parent="." unique_id=100993437 instance=ExtResource("7_3smsa")]
