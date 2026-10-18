@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cykbi76qrwhds"]
+
+[ext_resource type="Script" uid="uid://dlq2yqd3esi26" path="res://Scripts/particle_logo.gd" id="1_ll4v6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pm53"]
+radius = 33.54102
+
+[sub_resource type="Gradient" id="Gradient_ftb70"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ftb70"]
+gradient = SubResource("Gradient_ftb70")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.44705883)
+
+[node name="ParticleLogo" type="Area2D" unique_id=416214372]
+script = ExtResource("1_ll4v6")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=2108971798]
+shape = SubResource("CircleShape2D_4pm53")
+
+[node name="light" type="PointLight2D" parent="." unique_id=1738038164]
+energy = 1.21
+texture = SubResource("GradientTexture2D_ftb70")

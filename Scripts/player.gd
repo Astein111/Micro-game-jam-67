@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var max_stamina: float = 3.0
 @export var stamina_regen: float = 0.5
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_sprite = $sprite
 @onready var stamina_bar: ProgressBar = $UI/StaminaBar
 
 var is_dashing = false
@@ -59,10 +59,7 @@ func _physics_process(delta: float) -> void:
 func handle_dash() -> void:
 	is_dashing = true
 	stamina -= 1.0
-
 	velocity.x = facing_direction * dash_velocity
 	velocity.y = 0
-
 	await get_tree().create_timer(dash_duration).timeout
-
 	is_dashing = false

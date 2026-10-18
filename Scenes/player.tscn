@@ -48,14 +48,12 @@ animations = [{
 script = ExtResource("1_cvnsp")
 
 [node name="collision" type="CollisionShape2D" parent="." unique_id=1560606765]
-position = Vector2(-2, 2)
 shape = SubResource("CircleShape2D_4pm53")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2055205739]
-position = Vector2(1, -1)
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=2055205739]
 scale = Vector2(0.16666666, 0.16666663)
 sprite_frames = SubResource("SpriteFrames_pkuri")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="UI" parent="." unique_id=100993437 instance=ExtResource("7_3smsa")]

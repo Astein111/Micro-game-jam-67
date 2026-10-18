@@ -1,17 +1,51 @@
 [gd_scene format=3 uid="uid://dbtxw1jpbbb5i"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wviqb"]
+bg_color = Color(0.45490196, 0.72156864, 0.9882353, 0.8117647)
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
+bg_color = Color(0.33375892, 0.66271013, 0.9784284, 1)
+border_color = Color(0.45490196, 0.72156864, 0.9882353, 0.8117647)
+
 [node name="UI" type="CanvasLayer" unique_id=100993437]
 
 [node name="StaminaBar" type="ProgressBar" parent="." unique_id=1450999196]
 anchors_preset = -1
-anchor_left = 0.16000001
-anchor_top = 0.19800001
-anchor_right = 0.261
-anchor_bottom = 0.23900001
-offset_left = -0.32000732
-offset_top = -0.3040161
-offset_right = 0.32800293
-offset_bottom = 0.12799072
+anchor_left = 0.042000003
+anchor_top = 0.062000003
+anchor_right = 0.32700002
+anchor_bottom = 0.10300001
+offset_left = -0.3840027
+offset_top = -0.1760025
+offset_right = 0.29595947
+offset_bottom = 0.2559967
+theme_override_styles/background = SubResource("StyleBoxFlat_wviqb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jxero")
 max_value = 3.0
 value = 3.0
 show_percentage = false
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=695692892]
+anchors_preset = -1
+anchor_left = 0.23300001
+anchor_top = 0.062000003
+anchor_right = 0.23600002
+anchor_bottom = 0.10300001
+offset_left = -0.42199707
+offset_top = 0.8239975
+offset_right = -0.8779907
+offset_bottom = -0.7440033
+color = Color(0, 0.27058825, 0.6745098, 1)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=538232509]
+anchors_preset = -1
+anchor_left = 0.135
+anchor_top = 0.062000003
+anchor_right = 0.13800001
+anchor_bottom = 0.10300001
+offset_left = 0.47999573
+offset_top = 0.8239975
+offset_right = 0.023986816
+offset_bottom = -0.7440033
+color = Color(0, 0.27058825, 0.6745098, 1)
