@@ -3,7 +3,7 @@ extends StaticBody2D
 const MIN_WIDTH: float = 120.0
 const MAX_WIDTH: float = 500.0
 const SMOOTH_SPEED: float = 15.0
-const HIDE_DURATION: float = 5.0
+const TOGGLE_INTERVAL: float = 2.5 # Времето за автоматична смяна (2.5 секунди)
 
 var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -13,13 +13,12 @@ var current_width: float = 250.0
 var target_width: float = 250.0
 var current_size: Vector2 = Vector2(250, 250)
 
-var hide_timer: float = 0.0
+var toggle_timer: float = 0.0
 
 func _ready():
 	collision_layer = 0
 	collision_mask = 0
 	
-	# Взимаме точната пропорция от текстурата на рамката (InnerContent)
 	if has_node("InnerContent") and $InnerContent.texture:
 		var frame_tex_size = $InnerContent.texture.get_size()
 		if frame_tex_size.y > 0:
@@ -27,7 +26,6 @@ func _ready():
 		$InnerContent.visible = true
 		$InnerContent.z_index = 2
 		
-	# Черното поле (Border) стои под сивия кант на рамката
 	if has_node("Border"):
 		$Border.visible = true
 		$Border.z_index = 1
@@ -37,19 +35,22 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseButton:
+		# 1. Спираме влаченето, ако отпуснем левия бутон, независимо къде е мишката
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			is_dragging = false
 			
 		var mouse_pos = get_global_mouse_position()
 		var rect = Rect2(global_position - (current_size / 2.0), current_size)
+		var is_hovering = rect.has_point(mouse_pos)
 		
-		if rect.has_point(mouse_pos):
-			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-				is_dragging = true
-				drag_offset = global_position - mouse_pos
-				hide_black_box()
-				
-			elif event.pressed:
+		# 2. Започваме влачене (САМО ако мишката е отгоре)
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and is_hovering:
+			is_dragging = true
+			drag_offset = global_position - mouse_pos
+			
+		# 3. Оразмеряване (РАЗРЕШЕНО ако мишката е отгоре ИЛИ ако вече го влачим)
+		elif event.pressed and (event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
+			if is_hovering or is_dragging:
 				var step = 40.0
 				var scrolled = false
 				
@@ -62,31 +63,24 @@ func _input(event):
 					
 				if scrolled:
 					target_width = clamp(target_width, MIN_WIDTH, MAX_WIDTH)
-					hide_black_box()
-
-func hide_black_box():
-	hide_timer = HIDE_DURATION
-	# Скриваме САМО черното квадратче за 5 секунди
-	if has_node("Border"):
-		$Border.visible = false
-	# Рамката винаги остава видима
-	if has_node("InnerContent"):
-		$InnerContent.visible = true
 
 func _process(delta):
+	# Гладко влачене
 	if is_dragging:
 		global_position = global_position.lerp(get_global_mouse_position() + drag_offset, 0.8)
 		
+	# Плавно оразмеряване
 	if abs(current_width - target_width) > 0.1:
 		current_width = lerp(current_width, target_width, SMOOTH_SPEED * delta)
 		current_size = Vector2(current_width, current_width / aspect_ratio)
 		apply_window_size(current_size)
 
-	if hide_timer > 0:
-		hide_timer -= delta
-		if hide_timer <= 0:
-			if has_node("Border"):
-				$Border.visible = true
+	# Автоматично превключване на черното поле
+	toggle_timer += delta
+	if toggle_timer >= TOGGLE_INTERVAL:
+		toggle_timer -= TOGGLE_INTERVAL
+		if has_node("Border"):
+			$Border.visible = not $Border.visible
 
 	check_hidden_blocks()
 
@@ -94,14 +88,12 @@ func apply_window_size(new_size: Vector2):
 	if has_node("Collision") and $Collision.shape is RectangleShape2D:
 		$Collision.shape.size = new_size
 		
-	# 1. Рамката (InnerContent) определя външния размер
 	if has_node("InnerContent") and $InnerContent.texture:
 		var frame_tex_size = $InnerContent.texture.get_size()
 		if frame_tex_size.x > 0 and frame_tex_size.y > 0:
 			$InnerContent.position = Vector2.ZERO
 			$InnerContent.scale = new_size / frame_tex_size
 			
-	# 2. Черното квадратче (Border) се вписва точно вътре в сивата рамка
 	if has_node("Border") and $Border.texture:
 		var black_tex_size = $Border.texture.get_size()
 		if black_tex_size.x > 0 and black_tex_size.y > 0:
